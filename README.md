@@ -1,1 +1,0 @@
-# farcaster-frame-1

@@ -1,0 +1,469 @@
+/* Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+:root {
+    --primary: #3861fb;
+    --secondary: #14172b;
+    --background: #f8fafd;
+    --card-bg: #ffffff;
+    --text: #222531;
+    --text-secondary: #616e85;
+    --green: #16c784;
+    --red: #ea3943;
+    --shadow: rgba(0, 0, 0, 0.05);
+    --border-radius: 16px;
+    --transition: all 0.3s ease;
+}
+
+body {
+    background-color: var(--background);
+    color: var(--text);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.container {
+    width: 100%;
+    max-width: 480px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Header Styles */
+.header {
+    text-align: center;
+    animation: fadeIn 0.8s ease-in-out;
+}
+
+.header h1 {
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 5px;
+    background: linear-gradient(45deg, var(--primary), #8c43ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.subtitle {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+/* Refresh Button */
+.refresh-container {
+    display: flex;
+    justify-content: flex-end;
+}
+
+#refresh-btn {
+    background-color: var(--primary);
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 30px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: var(--transition);
+    box-shadow: 0 4px 12px rgba(56, 97, 251, 0.3);
+}
+
+#refresh-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(56, 97, 251, 0.4);
+}
+
+#refresh-btn .fa-sync-alt {
+    font-size: 0.8rem;
+}
+
+#refresh-btn.loading .fa-sync-alt {
+    animation: spin 1s linear infinite;
+}
+
+/* Token Cards */
+.tokens-container {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.token-card {
+    background-color: var(--card-bg);
+    border-radius: var(--border-radius);
+    padding: 16px;
+    display: flex;
+    align-items: center;
+    box-shadow: 0 4px 20px var(--shadow);
+    transition: var(--transition);
+    animation: slideIn 0.4s ease-out;
+    position: relative;
+    overflow: hidden;
+}
+
+.token-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.2),
+        transparent
+    );
+    transition: 0.5s;
+}
+
+.token-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+.token-card:hover::before {
+    left: 100%;
+}
+
+.token-rank {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--text-secondary);
+    width: 30px;
+    text-align: center;
+}
+
+.token-info {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex: 1;
+}
+
+.token-icon {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    overflow: hidden;
+    background-color: #f0f0f0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.token-icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.token-name-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.token-name {
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+.token-symbol {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+}
+
+.token-price-container {
+    text-align: right;
+    min-width: 100px;
+}
+
+.token-price {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 4px;
+}
+
+.token-change {
+    font-size: 0.85rem;
+    font-weight: 500;
+    padding: 3px 8px;
+    border-radius: 30px;
+    display: inline-block;
+}
+
+.token-change.positive {
+    background-color: rgba(22, 199, 132, 0.15);
+    color: var(--green);
+}
+
+.token-change.negative {
+    background-color: rgba(234, 57, 67, 0.15);
+    color: var(--red);
+}
+
+/* Loading State */
+.loading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 0;
+    color: var(--text-secondary);
+    animation: pulse 1.5s infinite ease-in-out;
+}
+
+.spinner {
+    width: 40px;
+    height: 40px;
+    border: 3px solid rgba(56, 97, 251, 0.2);
+    border-radius: 50%;
+    border-top-color: var(--primary);
+    animation: spin 1s linear infinite;
+    margin-bottom: 10px;
+}
+
+/* Footer */
+.footer {
+    text-align: center;
+    color: var(--text-secondary);
+    font-size: 0.8rem;
+    margin-top: 20px;
+    line-height: 1.6;
+}
+
+/* Animations */
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* Make cards appear one by one */
+.token-card:nth-child(1) { animation-delay: 0.1s; }
+.token-card:nth-child(2) { animation-delay: 0.2s; }
+.token-card:nth-child(3) { animation-delay: 0.3s; }
+.token-card:nth-child(4) { animation-delay: 0.4s; }
+.token-card:nth-child(5) { animation-delay: 0.5s; }
+
+/* Dark Mode Toggle */
+.theme-toggle {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.2rem;
+    color: var(--text);
+    transition: var(--transition);
+}
+
+/* Media Queries for Better Mobile Experience */
+@media (max-width: 480px) {
+    .container {
+        padding: 10px;
+    }
+    
+    .token-card {
+        padding: 12px;
+    }
+    
+    .token-name {
+        font-size: 1rem;
+    }
+    
+    .token-price {
+        font-size: 1rem;
+    }
+}
+
+/* ===== Additional Styles ===== */
+
+/* استایل برای سرچ بار */
+.search-container {
+    margin-bottom: 16px;
+}
+
+.search-bar {
+    display: flex;
+    position: relative;
+    border-radius: 30px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px var(--shadow);
+    transition: var(--transition);
+}
+
+.search-bar:focus-within {
+    box-shadow: 0 6px 18px rgba(56, 97, 251, 0.25);
+    transform: translateY(-2px);
+}
+
+#search-input {
+    flex: 1;
+    padding: 12px 16px;
+    border: none;
+    outline: none;
+    font-size: 0.95rem;
+    border-radius: 30px 0 0 30px;
+}
+
+#search-btn {
+    background-color: var(--primary);
+    color: white;
+    border: none;
+    padding: 0 20px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#search-btn:hover {
+    background-color: #2d50ca;
+}
+
+/* صفحه جزئیات توکن */
+.token-details-page {
+    display: none;
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+.back-button {
+    margin-bottom: 20px;
+}
+
+#back-btn {
+    background-color: var(--secondary);
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 30px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.9rem;
+    transition: var(--transition);
+}
+
+#back-btn:hover {
+    background-color: #222b4a;
+    transform: translateX(-5px);
+}
+
+.token-details-content {
+    background-color: var(--card-bg);
+    border-radius: var(--border-radius);
+    padding: 24px;
+    box-shadow: 0 4px 20px var(--shadow);
+    animation: slideIn 0.5s ease-out;
+}
+
+.token-detail-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+.token-detail-icon {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    overflow: hidden;
+    background-color: #f0f0f0;
+}
+
+.token-detail-icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.token-detail-name h1 {
+    font-size: 1.8rem;
+    margin-bottom: 5px;
+}
+
+.token-detail-symbol {
+    font-size: 1rem;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+}
+
+.token-price-large {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+}
+
+.token-detail-info {
+    margin-top: 24px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 16px;
+}
+
+.detail-item {
+    padding: 12px;
+    background-color: rgba(56, 97, 251, 0.05);
+    border-radius: 12px;
+}
+
+.detail-label {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    margin-bottom: 4px;
+}
+
+.detail-value {
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+.no-results {
+    text-align: center;
+    padding: 40px 0;
+    color: var(--text-secondary);
+}
+
+.error-message {
+    color: var(--red);
+    text-align: center;
+    margin: 10px 0;
+}

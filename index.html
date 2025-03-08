@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Top 5 Crypto Tokens</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>Top 5 Crypto Tokens</h1>
+      <p class="subtitle">Live from CoinMarketCap</p>
+    </div>
+    
+    <!-- سرچ بار اضافه شده -->
+    <div class="search-container">
+      <div class="search-bar">
+        <input type="text" id="search-input" placeholder="Search for a token...">
+        <button id="search-btn">
+          <i class="fas fa-search"></i>
+        </button>
+      </div>
+    </div>
+    
+    <div class="refresh-container">
+      <button id="refresh-btn">
+        <i class="fas fa-sync-alt"></i>
+        <span>Refresh</span>
+      </button>
+    </div>
+    
+    <div class="tokens-container" id="tokens-list">
+      <!-- Tokens will be added here dynamically -->
+      <div class="loading">
+        <div class="spinner"></div>
+        <p>Loading top tokens...</p>
+      </div>
+    </div>
+    
+    <!-- صفحه جزئیات توکن -->
+    <div class="token-details-page" id="token-details-page">
+      <div class="back-button">
+        <button id="back-btn">
+          <i class="fas fa-arrow-left"></i> Back
+        </button>
+      </div>
+      <div class="token-details-content" id="token-details-content">
+        <!-- Token details will be shown here -->
+      </div>
+    </div>
+    
+    <div class="footer">
+      <p>Data refreshes automatically every 60 seconds</p>
+      <p>© 2025 by cloudora</p>
+    </div>
+  </div>
+  
+  <template id="token-template">
+    <div class="token-card">
+      <div class="token-rank"></div>
+      <div class="token-info">
+        <div class="token-icon">
+          <img src="" alt="">
+        </div>
+        <div class="token-name-container">
+          <h2 class="token-name"></h2>
+          <span class="token-symbol"></span>
+        </div>
+      </div>
+      <div class="token-price-container">
+        <div class="token-price"></div>
+        <div class="token-change"></div>
+      </div>
+    </div>
+  </template>
+  
+  <script src="script.js"></script>
+</body>
+</html>
